@@ -33,7 +33,7 @@ public class Surface extends Canvas implements KeyListener {
 	public Surface(int w, int h) {
 		setPreferredSize(new Dimension(w, h));
 		setBackground(Color.BLACK);
-		ball = new Ball(this, (w - 15) / 2d, (h - 15) / 2d, 15, 45d, 300d, Color.WHITE);
+		ball = new Ball(this, (w - 15) / 2d, (h - 15) / 2d, 15, 160, 400, Color.WHITE);
       leftLine = new Line(5, (h - 70) / 2, 10, 70, Color.BLUE);
       rightLine = new Line(w - 15, (h - 70) / 2, 10, 70, Color.RED);
       addKeyListener(this);
@@ -141,11 +141,12 @@ public class Surface extends Canvas implements KeyListener {
    public void resetBall () {
       if (ball.getX() + ball.getSize() > getWidth()) {
          score1++;
+         ball = new Ball(this, getWidth() / 2, getHeight() / 2, 15, 160, 450, Color.WHITE);
       }
       if (ball.getX() <= 0) {
          score2++;
+         ball = new Ball(this, getWidth() / 2, getHeight() / 2, 15, -160, 450, Color.WHITE);
       }
-      ball = new Ball(this, getWidth() / 2, getHeight() / 2, 15, Math.random() > 0.5 ? 1 : -1, 250, Color.WHITE);
    }
 
 	@Override
