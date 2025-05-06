@@ -1,5 +1,5 @@
-package java2d.guiada;
 
+import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 
 import javax.swing.JFrame;
@@ -7,14 +7,14 @@ import javax.swing.SwingUtilities;
 
 public class Main extends WindowAdapter {
 	private final JFrame frame;
-	private final Surface surface;
+	private Surface surface = new Surface(650, 450);
 
 	public Main() {
-      frame = new JFrame("Bola Rebotando");
-      frame.setDefaultCloseOperation(JFrame.
-      DO_NOTHING_ON_CLOSE);
+      frame = new JFrame("Pong Game");
+      frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+      frame.setLayout(new BorderLayout());
       frame.addWindowListener(this);
-      frame.add(surface = new Surface(650, 450));
+      frame.add(surface, BorderLayout.CENTER);
       frame.pack();
 		frame.setLocationRelativeTo(null);
 	}

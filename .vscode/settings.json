@@ -1,0 +1,7 @@
+{
+   "java.project.sourcePaths": [
+      "Sudoku/src",
+      "PongGame/src",
+      "FlappyBird/src"
+   ]
+}

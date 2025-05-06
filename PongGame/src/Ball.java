@@ -1,4 +1,3 @@
-package java2d.guiada;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -30,6 +29,11 @@ public class Ball {
 	public void move(long lapse) {
 		x += (lapse * vx) / 1000000000L;
 		y += (lapse * vy) / 1000000000L;
+
+      if (x <= 0 || x + size >= surface.getWidth()) {
+         surface.resetBall();
+      }
+
 		if (x + size >= surface.getWidth()) {
 			x = 2 * surface.getWidth() - x - 2 * size;
 			vx *= -1;
@@ -43,5 +47,34 @@ public class Ball {
 			y = -y;
 			vy *= -1;
 		}
+
+      Line leftLine = surface.getLeftLine();
+      Line rightLine = surface.getRightLine();
+
+      if (x <= leftLine.getX() + leftLine.getWidth() && y + size >= leftLine.getY() && y <= leftLine.getY() + leftLine.getHeight()) {
+         x = leftLine.getX() + leftLine.getWidth();
+         vx *= -1;
+      }
+
+      if (x + size >= rightLine.getX() && y + size >= rightLine.getY() && y <= rightLine.getY() + rightLine.getHeight()) {
+         x = rightLine.getX() - size;
+         vx *= -1;
+      }
+
+      if (x <= 0 || x + size >= surface.getWidth()) {
+         surface.resetBall();
+      }
 	}
+
+   public double getX () {
+      return x;
+   }
+
+   public double getY () {
+      return y;
+   }
+
+   public double getSize () {
+      return size;
+   }
 }
